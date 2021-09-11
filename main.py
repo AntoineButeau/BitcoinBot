@@ -11,7 +11,7 @@ bot_token = os.getenv("BOT_TOKEN")
 chat_id = os.getenv ("CHAT_TOKEN")
 lower_threshold = 44500 #Bitcoin lower price threshold - TODO, need to take into account currency and latest price, probably also doesnt fit the use case I'm trying to achieve, so need to take into account historical price somewhat
 upper_threshold = 46000 #Bitcoin upper threshold
-time_interval = 5 * 60 # in seconds, 5 minutes time interval
+time_interval = 10 * 60 # in seconds, 10 minutes time interval
 
 #Function when user starts the bot
 def start_command(update: Update, context: CallbackContext) -> None:
@@ -49,11 +49,8 @@ def main():
     dispatcher.add_handler(CommandHandler("start", start_command))
 
     #Handle BTC pricing
-    price_list = []
-
     while True:
         price = get_btc_price()
-        price_list.append(price)
 
         #If the price falls below threshold, send an immediate msg
         if price < lower_threshold:
@@ -61,12 +58,6 @@ def main():
 
         if price > upper_threshold:
              send_message(chat_id=chat_id, msg=f'BTC Price Rise Alert: {price}')
-
-        # Send last 6 btc price as test, will remove for presentation
-        if len(price_list) >= 6:
-            send_message(chat_id=chat_id, msg=price_list)
-            # empty the price_list
-            price_list = []
 
         #Fetch the price for every time_interval
         time.sleep(time_interval)
