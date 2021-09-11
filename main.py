@@ -43,13 +43,12 @@ def main():
     dispatcher.add_error_handler(error)
 
     #Hand
+    handlers.btc_price_threshold()
+
     #Start the Bot start_polling() method
     #Keep the Bot listening using idle() method
-    updater.stle BTC price and send message when below or above threshold
-    handlers.btc_price_threshold()
-art_polling()
+    updater.start_polling()
     updater.idle()
-
 
 if __name__ == '__main__':
     main()
