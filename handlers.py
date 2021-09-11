@@ -16,13 +16,13 @@ def error(update, context):
     logging.error(f'Update {update} caused error {context.error}')
 
 def price_command(update, context):
-    update.message.reply_text(btc_market_information())
+    update.message.reply_text(get_btc_market_information())
 
-def satoshi_command(update, context):
+def satoshi_whitepaper_command(update, context):
     update.message.reply_text(text="<a href='https://bitcoin.org/bitcoin.pdf'>Satoshi Whitepaper</a>",parse_mode="HTML")
 
 # Function to get BTC price
-def get_btc_data():
+def fetch_data_from_coinmarketcap_api():
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
     query = '?symbol=' + config.MARKET_SYMBOL + '&convert=' + config.CURRENCY_ISO
     headers = {
@@ -48,9 +48,9 @@ def get_btc_data():
 
     return btc_data_dict
 
-def btc_market_information():
+def get_btc_market_information():
 
-    btc_data_dict = get_btc_data()
+    btc_data_dict = fetch_data_from_coinmarketcap_api()
     
     # Get BTC price
     btc_price = '$' + str(locale.format("%.2f", float(btc_data_dict["price"]), True))
@@ -77,9 +77,9 @@ def btc_market_information():
     btc_market_cap = '$' + str(locale.format("%.2f", float(btc_data_dict["market_cap"]), True))
 
     msg_market_information = '\nPrice: ' + btc_price \
-                                 + '\nLast 1 hour changed: ' + rate1h + '%' + rate1h_emoji \
-                                 + '\nLast 24 hours changed: ' + rate24h + '%' + rate24h_emoji \
-                                 + '\nLast 7 days changed: ' + rate7d + '%' + rate7d_emoji \
+                                 + '\nLast 1 hour change: ' + rate1h + '%' + rate1h_emoji \
+                                 + '\nLast 24 hours change: ' + rate24h + '%' + rate24h_emoji \
+                                 + '\nLast 7 days change: ' + rate7d + '%' + rate7d_emoji \
                                  + '\nBTC dominance: ' + btc_dominance \
                                  + '\nMarket Cap: ' + btc_market_cap + '\n'
 
@@ -100,20 +100,20 @@ def parse_price_change(percent):
 
     return emoji
 
-# Function to handle the price change threshold TODO include % change
-def btc_price_threshold():
+# Function to get the percentage of change vs. threshold TODO include % change
+def determine_price_percentage_change_against_threshold():
     while True:
 
-        btc_data_dict = get_btc_data()
-
-        #1 hour price change with emoji
+        # Get 1h percentage of change
+        btc_data_dict = fetch_data_from_coinmarketcap_api()
         rate1h = btc_data_dict["percent_change_1h"]
 
-        # If the price falls below threshold, send an immediate msg
+        # If the percentage of change falls below threshold, send an immediate msg
         if rate1h <= config.LOWER_THRESHOLD:
             btc_price = '$' + str(locale.format("%.2f", float(btc_data_dict["price"]), True))
             send_message(chat_id=config.CHAT_ID, msg=f'BTC Price Drop Alert: {btc_price}')
 
+        # If the percentage of change rises above threshold, send an immediate msg
         if rate1h >= config.UPPER_THRESHOLD:
             btc_price = '$' + str(locale.format("%.2f", float(btc_data_dict["price"]), True))
             send_message(chat_id=config.CHAT_ID, msg=f'BTC Price Rise Alert: {btc_price}')
@@ -121,7 +121,7 @@ def btc_price_threshold():
         # Fetch the price and rate of change for every time_interval
         time.sleep(config.TIME_INTERVAL)
 
-# Function to send_message through telegram
+# Function to send_message through Telegram
 def send_message(chat_id, msg):
     url = f"https://api.telegram.org/bot{config.BOT_TOKEN}/sendMessage?chat_id={chat_id}&text={msg}"
 

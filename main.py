@@ -26,7 +26,7 @@ def main():
     updater.start_polling()
 
     # Function to check if BTC price is above or below threshold
-    handlers.btc_price_threshold()
+    handlers.determine_price_percentage_change_against_threshold()
 
     # Keep the Bot listening using idle() method
     updater.idle()
