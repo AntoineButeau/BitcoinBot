@@ -20,4 +20,4 @@ CURRENCY_ISO = 'USD'
 
 # Thresholds to notify user
 LOWER_THRESHOLD = 45600  #Bitcoin lower price threshold - TODO, need to take into account currency and latest price, probably also doesnt fit the use case I'm trying to achieve, so need to take into account historical price somewhat
-UPPER_THRESHOLD = 46000  #Bitcoin upper threshold
+UPPER_THRESHOLD = 45000  #Bitcoin upper threshold

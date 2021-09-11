@@ -1,6 +1,17 @@
 import config
 import requests
 import time
+import logging
+
+def start_command(update, context):
+    update.message.reply_text('Hello there! I\'m a bot. What\'s up?')
+
+def help_command(update, context):
+    update.message.reply_text('Try typing anything and I will do my best to respond!')
+
+def error(update, context):
+    # Logs errors
+    logging.error(f'Update {update} caused error {context.error}')
 
 #Function to get BTC price
 def get_btc_price():
