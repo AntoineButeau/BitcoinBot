@@ -59,7 +59,7 @@ def main():
         if price < lower_threshold:
              send_message(chat_id=chat_id, msg=f'BTC Price Drop Alert: {price}')
 
-        if price < upper_threshold:
+        if price > upper_threshold:
              send_message(chat_id=chat_id, msg=f'BTC Price Rise Alert: {price}')
 
         # Send last 6 btc price as test, will remove for presentation
