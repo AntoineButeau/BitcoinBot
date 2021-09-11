@@ -2,7 +2,6 @@ import config
 import handlers
 import logging
 
-from telegram import Update  #upm package(python-telegram-bot)
 from telegram.ext import Updater, CommandHandler  #upm package(python-telegram-bot)
 
 # Set up logging

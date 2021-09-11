@@ -6,10 +6,10 @@ import locale
 from emoji import emojize
 
 def start_command(update, context):
-    update.message.reply_text('Hello there! I\'m a bot. What\'s up?')
+    update.message.reply_text("Hello there! This bot checks the BTC price every hour and sends alerts if it drops or rise by more than 5%")
 
 def help_command(update, context):
-    update.message.reply_text('Try typing anything and I will do my best to respond!')
+    update.message.reply_text("This bot doesn't do much else yet. Try /price to get latest BTC market information or /satoshi to get a link to the Bitcoin whitepaper")
 
 def error(update, context):
     # Logs errors
@@ -51,6 +51,7 @@ def get_btc_data():
 def btc_market_information():
 
     btc_data_dict = get_btc_data()
+    
     # Get BTC price
     btc_price = '$' + str(locale.format("%.2f", float(btc_data_dict["price"]), True))
 
@@ -99,23 +100,25 @@ def parse_price_change(percent):
 
     return emoji
 
-# Function to handle the price threshold
+# Function to handle the price change threshold TODO include % change
 def btc_price_threshold():
     while True:
 
-        # Get BTC price
-        price = get_btc_data()["price"]
+        btc_data_dict = get_btc_data()
+
+        #1 hour price change with emoji
+        rate1h = btc_data_dict["percent_change_1h"]
 
         # If the price falls below threshold, send an immediate msg
-        if price < config.LOWER_THRESHOLD:
-            btc_price = '$' + str(locale.format("%.2f", float(price), True))
+        if rate1h <= config.LOWER_THRESHOLD:
+            btc_price = '$' + str(locale.format("%.2f", float(btc_data_dict["price"]), True))
             send_message(chat_id=config.CHAT_ID, msg=f'BTC Price Drop Alert: {btc_price}')
 
-        if price > config.UPPER_THRESHOLD:
-            btc_price = '$' + str(locale.format("%.2f", float(price), True))
+        if rate1h >= config.UPPER_THRESHOLD:
+            btc_price = '$' + str(locale.format("%.2f", float(btc_data_dict["price"]), True))
             send_message(chat_id=config.CHAT_ID, msg=f'BTC Price Rise Alert: {btc_price}')
 
-        # Fetch the price for every time_interval
+        # Fetch the price and rate of change for every time_interval
         time.sleep(config.TIME_INTERVAL)
 
 # Function to send_message through telegram
