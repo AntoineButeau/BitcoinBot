@@ -3,27 +3,15 @@
     "handlers.py": [
       {
         "id": "fe465807-b2b6-4687-9f22-e15fe9440592",
-        "line": 6,
-        "version": 1625,
-        "index": 89
+        "line": 12,
+        "version": 3955,
+        "index": 229
       },
       {
         "id": "f611ef00-5478-43bc-91c7-e492c1843e79",
-        "line": 6,
-        "version": 1625,
-        "index": 89
-      },
-      {
-        "id": "681e01fc-69bb-4774-8928-858e7bc1ba06",
-        "line": 113,
-        "version": 2666,
-        "index": 4303
-      },
-      {
-        "id": "c1ea5771-928d-474a-8a56-1a33d9a72b4c",
-        "line": 117,
-        "version": 2666,
-        "index": 4527
+        "line": 12,
+        "version": 3955,
+        "index": 229
       }
     ]
   }
