@@ -23,7 +23,7 @@ To make this work, you will need the following:
 * A Replit account. [Create one](https://replit.com/signup) if you haven't already.
 
 ## Limitations
-* Need an "Always On" Repl to make sure the bot never falls asleep.
+* It needs an "Always On" Repl to make sure the bot never falls asleep.
 
 ## 1) Getting CoinMarketCap API Key
 Sign up or login on [pro.coinmarketcap.com](https://pro.coinmarketcap.com/).
