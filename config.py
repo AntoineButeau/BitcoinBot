@@ -6,9 +6,6 @@ CMC_API_KEY = os.getenv("CMC_TOKEN")
 # The token of the @Replit_Bitcoin_Bot
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-# The chat ID to send message and bypass python-telegram-bot send message limitation
-CHAT_ID = os.getenv("CHAT_TOKEN")
-
 # Do API requests at 60 minutes time interval
 TIME_INTERVAL = 60 * 60
 

@@ -1,31 +1,11 @@
 {
   "files": {
-    "handlers.py": [
-      {
-        "id": "d3573eb9-7d4a-443a-a283-8bcb18b3406a",
-        "line": 16,
-        "version": 4387,
-        "index": 421
-      },
-      {
-        "id": "3356db48-8ea1-45bd-bd56-f25ffc5d88fd",
-        "line": 112,
-        "version": 4387,
-        "index": 4695
-      },
-      {
-        "id": "5e676437-962a-4dc5-a913-d17da863c417",
-        "line": 113,
-        "version": 4387,
-        "index": 4734
-      }
-    ],
     "main.py": [
       {
         "id": "9d6c55ff-a6a8-42cc-8985-c8a4b484f0ea",
-        "line": 33,
-        "version": 3590,
-        "index": 954
+        "line": 32,
+        "version": 3592,
+        "index": 955
       }
     ]
   }
