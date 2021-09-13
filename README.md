@@ -80,9 +80,9 @@ Copy that `authorization token` and add this in your **Replit Secrets** with the
 * Note: `get_price_percentage_change_against_threshold()` is between `updater.start_polling()` and `updater.idle()` since we want to have the bot started before fetching data from CoinMarketCap to determine the price change against threshold. If you put the function before, the bot will not start properly.
 
 ## What's Next (Non-Paid Improvements)
-- Improve handling of user and chat_id
+- Improve handling of user and chat_id.
 - Have users set currency and locale based on their preference.
-- Alert users of daily price changes
+- Alert users of daily price changes.
 - Add Bitcoin Quiz where users can test their knowledge of Bitcoin and learn.
 - Improve `satoshi` command where it would send quotes from the Bitcoin Whitepaper.
 
@@ -96,4 +96,4 @@ Copy that `authorization token` and add this in your **Replit Secrets** with the
     - Have users define their own market symbols and ability to support multiple market symbols.
     - Have users set their own percentage thresholds based on their market symbols.
     - Faster time interval / refresh rate (e.g. from 60 minutes to 2 minutes).
-    - Provide more analytics on market information so that users can make more informed decision on changing their stacking sats strategy (e.g. BTC or ETH Rainbow chart which look at logarithmic regression)
+    - Provide more analytics on market information so that users can make more informed decision on changing their stacking sats strategy (e.g. BTC or ETH Rainbow chart which look at logarithmic regression).
