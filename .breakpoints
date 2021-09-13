@@ -1,18 +1,3 @@
 {
-  "files": {
-    "handlers.py": [
-      {
-        "id": "fe465807-b2b6-4687-9f22-e15fe9440592",
-        "line": 12,
-        "version": 3955,
-        "index": 229
-      },
-      {
-        "id": "f611ef00-5478-43bc-91c7-e492c1843e79",
-        "line": 12,
-        "version": 3955,
-        "index": 229
-      }
-    ]
-  }
+  "files": {}
 }

@@ -2,7 +2,7 @@
 A Telegram Bot to get notified when the BTC price changes drastically, so you can adjust your stacking sats strategy.
 
 ## What It Can Do?
-- If the BTC price falls below or rises above a certain 1h percentage  `threshold`, then it will send an immediate Telegram message.
+- If the BTC price falls below or rises above a certain 1h percentage  `threshold`, it will send an immediate Telegram message.
 - `/price` gets the latest  information from CoinMarketCap.
 - `/satoshi` gets the link to the Bitcoin Whitepaper.
 - `/start` and `/help` instruct the user on what the Bot can do.
