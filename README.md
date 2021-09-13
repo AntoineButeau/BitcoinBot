@@ -79,14 +79,21 @@ Copy that `authorization token` and add this in your **Replit Secrets** with the
 * `updater.idle()` is used to keep the bot listening, since `updater.start_polling()` would execute and then immediately exit because there's nothing blocking it. `updater.idle()` block the script while the bot is listening.
 * Note: `get_price_percentage_change_against_threshold()` is between `updater.start_polling()` and `updater.idle()` since we want to have the bot started before fetching data from CoinMarketCap to determine the price change against threshold. If you put the function before, the bot will not start properly.
 
-## What's Next
-* Improve handling of users chat_id through a database
-* Have users set currency and locale based on their preference.
-* Have users set the percentage threshold based on their own stacking sats strategy.
-* Provide more analytics on market information so that users can make more informed decision on changing their stacking sats strategy.
-* Provide a way for users to buy Bitcoin by referring to P2P exchange.
-* Provide a weekly roundup for users to get market information via Telegram.
-* Add Bitcoin Quiz where users can test their knowledge of Bitcoin and learn.
-* Improve `satoshi` command where it would send quotes from the Bitcoin Whitepaper.
-* Have users set the market symbol they want to pull from CoinMarketCap.
-* Have users pull information on multiple market symbols and set thresholds depending on their preferred market symbols.
+## What's Next (Non-Paid Improvements)
+- Improve handling of user and chat_id
+- Have users set currency and locale based on their preference.
+- Alert users of daily price changes
+- Add Bitcoin Quiz where users can test their knowledge of Bitcoin and learn.
+- Improve `satoshi` command where it would send quotes from the Bitcoin Whitepaper.
+
+## What's Next (Monetization)
+- Free version - BTC only
+    - Send ads or sponsored posts from time to time. Potentially tie it in with weekly market information roundup.
+    - Add affiliate link to buy directly from P2P exchange (LocalBitcoins).
+- Paid version
+    - Use Telegram bot native payments function to unlock more features.
+    - Pricing: Seems like the standard for paid features in bot is between $3-10/month.
+    - Have users define their own market symbols and ability to support multiple market symbols.
+    - Have users set their own percentage thresholds based on their market symbols.
+    - Faster time interval / refresh rate (e.g. from 60 minutes to 2 minutes).
+    - Provide more analytics on market information so that users can make more informed decision on changing their stacking sats strategy (e.g. BTC or ETH Rainbow chart which look at logarithmic regression)
