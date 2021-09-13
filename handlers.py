@@ -8,9 +8,15 @@ from emoji import emojize
 # Set locale for formatting separators
 locale.setlocale(locale.LC_ALL, config.LOCALE)
 
+# Dictionary to fill/update when people interact with the bot for the first time. Somewhat hackish for now, probably better to use the Repl database
+mybots = {}
+
 # Start function to handle /start command
 def start_command(update, context):
     update.message.reply_text("Hello there! This bot checks the BTC price every hour and sends alerts if it drops or rises by more than 5%")
+    
+    #Get user chat id and add bot
+    mybots[update.message.chat_id] = context.bot
 
 # Help function to handle /help command
 def help_command(update, context):
@@ -81,7 +87,7 @@ def get_price_percentage_change_against_threshold():
             msg_threshold = "\nBTC price drop alert: " + rate1h_msg + "%" + rate1h_emoji \
                             + "\nBTC price now at: " + btc_price_msg + "\n"
 
-            send_message(chat_id=config.CHAT_ID, msg=msg_threshold)
+            send_message(msg=msg_threshold)
 
         # If the percentage of change rises above threshold, send an immediate msg
         if rate1h_float >= config.UPPER_THRESHOLD:
@@ -93,17 +99,15 @@ def get_price_percentage_change_against_threshold():
             msg_threshold = "\nBTC price rise alert: " + rate1h_msg + "%" + rate1h_emoji \
                             + "\nBTC price now at: " + btc_price_msg + "\n"
 
-            send_message(chat_id=config.CHAT_ID, msg=msg_threshold)
+            send_message(msg=msg_threshold)
 
         # Fetch the price and rate of change for every time_interval
         time.sleep(config.TIME_INTERVAL)
 
-# Function to send_message through Telegram bypassing python-telegram-bot limitations
-def send_message(chat_id, msg):
-    url = f"https://api.telegram.org/bot{config.BOT_TOKEN}/sendMessage?chat_id={chat_id}&text={msg}"
-
-    # Send the msg
-    requests.get(url)
+# Function to send_message through Telegram
+def send_message(msg):
+    for id, bot in mybots.items():
+        bot.send_message(id, text=msg)
 
 # Function to fetch BTC data from CoinMarketCap
 def fetch_data_from_coinmarketcap_api():

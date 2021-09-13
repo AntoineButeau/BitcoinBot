@@ -32,7 +32,7 @@ You will then be taken to your account dashboard. There is a limit in using thei
 
 Click on `COPY KEY` button which will pop up when you over the `API Key` box. You can add this key in your **Replit Secrets (System environment variables)** with the key being `CMC_TOKEN` and the value being the `api_key` you just copied.
 
-## 2) Telegram Bot and your Chat ID
+## 2) Telegram Bot
 Make sure you have the Telegram app installed on your phone/computer and you have an account created.
 
 ### Creating a Bot

@@ -10,7 +10,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_TOKEN")
 
 # Do API requests at 60 minutes time interval
-TIME_INTERVAL = 60 * 60 
+TIME_INTERVAL = 60 * 60
 
 # Market symbol to pull from CoinMarketCap
 MARKET_SYMBOL = 'BTC'
