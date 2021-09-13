@@ -15,7 +15,7 @@ mybots = {}
 def start_command(update, context):
     update.message.reply_text("Hello there! This bot checks the BTC price every hour and sends alerts if it drops or rises by more than 5%")
     
-    #Get user chat id and add bot
+    #Get user chat id and add related bot
     mybots[update.message.chat_id] = context.bot
 
 # Help function to handle /help command
